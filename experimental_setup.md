@@ -19,3 +19,42 @@ In this phase, we attempt to mask our message by modifying critical words into o
 ## Phase Three: Defend
 Come up with a way to modify the detector to respond correctly to the attack messages.
 * One possibility; spell correction on unknown words that are close to known words.
+
+## Specific Code Process
+
+### Data Acquisition Phase
+* Find raw data.
+* Take subset of training data and label it by hand.
+* Carve out portions of data (including labeled data) into training and test data for cross-validation.
+    * Software component; cross-validation chopper.
+
+### Training Phase
+* Train comprehension model on training data. (Initially; LDA)
+    * External software component; LDA.
+    * Software component; wrapper for running LDA.
+    * Model produced; topic model.
+    * Software component; wrapper for topic inference.
+    * Model produced; topic distribution for given documents.
+* Train classifier using comprehension model. (Initially; k-means? Other simple voronoi classifier?)
+    * Software component; wrapper for classifier training.
+    * Software component; classifier.
+    * Model produced; classifier.
+* Test classifier, produce score.
+    * Software component; test code.
+    * Result produced; score.
+
+### Attack Phase
+* Build attack generator using training data.
+    * Software component; attack creator.
+    * Model produced; attack.
+* Run attack to produce attack posts.
+    * Software component; attack wrapper.
+    * Data produced; attack posts.
+* Test attack posts, produce score.
+    * Software component; test code.
+    * Result produced; score.
+    * Data augmentation; which attack posts succeeded, which didn't.
+
+### Defense Phase
+* Create countermeasure (spell-check preprocessing).
+* Insert countermeasure into training pipeline, compare new scores.
