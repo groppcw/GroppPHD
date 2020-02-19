@@ -1,5 +1,8 @@
 # Software components
 
+##IMPORTANT NOTE:
+Code development moved to HideAndSeek repo for the time being. This checklist may be out of date.
+
 * DONE - Cross-validation data chopper.
 	* Intake; training data.
 	* Intake; 10-fold vs 5-fold etc
