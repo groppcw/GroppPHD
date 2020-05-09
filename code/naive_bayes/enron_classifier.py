@@ -52,5 +52,13 @@ score = sklearn.metrics.accuracy_score(test_labels, pred)
 print(score)
 
 # Create adversarial data
+adversary_data = list()
+for datum in test_data:
+    modified = helper.cloak_transposition(datum)
+    adversary_data.append(modified)
+adversary_vec = helper.vectorize_hashing(adversary_data)
 
 # Evaluate classifier performance on advesrarial data
+pred2 = clf.predict(adversary_vec)
+score2 = sklearn.metrics.accuracy_score(test_labels, pred2)
+print(score)
